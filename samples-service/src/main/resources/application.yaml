@@ -1,0 +1,9 @@
+server:
+  port: 9001
+spring:
+  data:
+    mongodb:
+      password: password
+      username: root
+      database: test
+      authentication-database: admin
