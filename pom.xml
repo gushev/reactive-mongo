@@ -19,6 +19,7 @@
         <module>gateway</module>
         <module>samples-service</module>
         <module>user-details-service</module>
+        <module>models</module>
     </modules>
 
     <properties>

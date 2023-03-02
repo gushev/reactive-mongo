@@ -16,8 +16,9 @@
 	<description>gateway</description>
 
 	<properties>
-		<feign-reactor.version>3.2.0</feign-reactor.version>
 		<java.version>17</java.version>
+		<feign-reactor.version>3.2.0</feign-reactor.version>
+		<feign-slf4j.version>11.2</feign-slf4j.version>
 	</properties>
 	<dependencies>
 
@@ -48,11 +49,23 @@
 		<dependency>
 			<groupId>io.github.openfeign</groupId>
 			<artifactId>feign-slf4j</artifactId>
-			<version>11.2</version>
+			<version>${feign-slf4j.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.beats</groupId>
+			<artifactId>models</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency><!--Remove this when UserResponse is created-->
+			<groupId>com.beats</groupId>
+			<artifactId>user-details-service</artifactId>
+			<version>0.0.1</version>
 		</dependency>
 	</dependencies>
 

@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class User {
   @Id
-  private UUID id;
+  private String id;
 
   private String name;
 }

@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>user-details-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>user-details-service</name>
     <description>user-details-service</description>
     <dependencies>
@@ -39,6 +39,11 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.beats</groupId>
+            <artifactId>models</artifactId>
+            <version>0.0.1</version>
         </dependency>
     </dependencies>
 

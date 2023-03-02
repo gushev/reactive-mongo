@@ -1,15 +1,14 @@
 package com.beats.userdetails.controller;
 
+import com.beats.models.request.UserCreateRequest;
 import com.beats.userdetails.model.User;
 import com.beats.userdetails.service.UserService;
 import com.netflix.discovery.EurekaClient;
 import lombok.RequiredArgsConstructor;
 import org.reactivestreams.Publisher;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 import static com.beats.userdetails.controller.UserController.USERS_ENDPOINT;
@@ -27,7 +26,7 @@ public class UserController {
   @Value("${spring.application.name}")
   private String appName;
 
-  @GetMapping
+  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public Publisher<User> getAll() {
     return service.getAll();
   }
@@ -39,9 +38,9 @@ public class UserController {
     return Mono.just(String.format("Hello from '%s'!", idInEureka));
   }
 
-  @PostMapping
-  public Mono<Boolean> create() {
-    System.out.println("here");
-    return Mono.just(true);
+  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+  public Mono<Void> create(@RequestBody Publisher<UserCreateRequest> userCreateRequest) {
+    System.out.println(userCreateRequest);
+    return  Mono.fromRunnable(() -> {});
   }
 }
