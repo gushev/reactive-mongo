@@ -9,6 +9,7 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import static com.beats.gateway.controller.UserController.USERS_ENDPOINT;
@@ -23,7 +24,7 @@ public class UserController {
   private final UserDetailsServiceClient client;
 
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public Publisher<User> getAll() {
+  public Flux<User> getAll() {
     return client.getAll();
   }
 
