@@ -1,6 +1,7 @@
 package com.beats.userdetails.controller;
 
 import com.beats.models.request.UserCreateRequest;
+import com.beats.models.response.UserCreateResponse;
 import com.beats.userdetails.model.User;
 import com.beats.userdetails.service.UserService;
 import com.netflix.discovery.EurekaClient;
@@ -32,16 +33,8 @@ public class UserController {
     return service.getAll();
   }
 
-  @GetMapping("/greeting")
-  public Mono<String> greeting() {
-    System.out.println("here");
-    String idInEureka = eurekaClient.getApplication(appName).getInstances().get(0).getId();
-    return Mono.just(String.format("Hello from '%s'!", idInEureka));
-  }
-
-  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-  public Mono<Void> create(@RequestBody Publisher<UserCreateRequest> userCreateRequest) {
-    System.out.println(userCreateRequest);
-    return  Mono.fromRunnable(() -> {});
+  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  public Mono<UserCreateResponse> create(@RequestBody Mono<UserCreateRequest> userCreateRequest) {
+    return service.create(userCreateRequest);
   }
 }

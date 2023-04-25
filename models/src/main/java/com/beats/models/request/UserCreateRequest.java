@@ -1,9 +1,12 @@
 package com.beats.models.request;
 
-import lombok.Builder;
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Value
-@Builder
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserCreateRequest {
+  private String name;
 }
