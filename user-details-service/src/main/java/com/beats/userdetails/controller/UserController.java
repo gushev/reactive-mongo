@@ -23,10 +23,6 @@ public class UserController {
   public static final String USERS_ENDPOINT = "users";
 
   private final UserService service;
-  private final EurekaClient eurekaClient;
-
-  @Value("${spring.application.name}")
-  private String appName;
 
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public Flux<User> getAll() {
