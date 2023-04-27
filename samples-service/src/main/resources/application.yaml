@@ -1,9 +1,19 @@
 server:
   port: 9001
+
 spring:
+  application:
+    name: samples-service
   data:
     mongodb:
       password: password
       username: root
       database: test
       authentication-database: admin
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true

@@ -15,3 +15,7 @@ eureka:
 user-details-service:
   service:
     name: user-details-service
+
+samples-service:
+  service:
+    name: samples-service
