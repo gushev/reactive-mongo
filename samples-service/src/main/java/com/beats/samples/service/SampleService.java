@@ -23,14 +23,6 @@ public class SampleService {
   public Mono<SampleCreateResponse> create(Mono<SampleCreateRequest> createRequest) {
     return createRequest.map(mapper::toEntity)
         .flatMap(repository::save)
-        .map(this::mapUserToUserCreatedResponse);
-  }
-
-  private SampleCreateResponse mapUserToUserCreatedResponse(Sample sample) {
-    return SampleCreateResponse.builder()
-        .id(sample.getId())
-        .userId(sample.getUserId())
-        .name(sample.getName())
-        .build();
+        .map(mapper::toCreateResponse);
   }
 }
