@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
+import java.util.UUID;
+
 import static com.beats.userdetails.controller.UserController.USERS_ENDPOINT;
 
 @RestController
@@ -23,6 +26,11 @@ public class UserController {
   public static final String USERS_ENDPOINT = "users";
 
   private final UserService service;
+
+  @GetMapping(value = "{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public Mono<UserCreateResponse> get(@PathVariable UUID userId) {
+    return service.get(Mono.just(userId));
+  }
 
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public Flux<User> getAll() {

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 import static com.beats.gateway.controller.UserController.USERS_ENDPOINT;
 
 @RestController
@@ -20,6 +22,11 @@ public class UserController {
   public static final String USERS_ENDPOINT = "users";
 
   private final UserDetailsServiceClient client;
+
+  @GetMapping(value = "{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public Mono<UserCreateResponse> get(@PathVariable UUID userId) {
+    return client.get(userId);
+  }
 
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public Flux<User> getAll() {

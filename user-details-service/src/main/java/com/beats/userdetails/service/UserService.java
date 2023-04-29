@@ -10,11 +10,18 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
   private final UserRepository repository;
   private final UserMapper mapper;
+
+  public Mono<UserCreateResponse> get(Mono<UUID> userId) {
+    return repository.findById(userId)
+        .map(mapper::toUserCreateResponse);
+  }
 
   public Flux<User> getAll() {
     return repository.findAll();
