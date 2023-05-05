@@ -6,7 +6,9 @@ import com.beats.userdetails.repository.UserRepository;
 import com.beats.userdetails.model.User;
 import com.beats.userdetails.service.util.UserMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -20,6 +22,7 @@ public class UserService {
 
   public Mono<UserCreateResponse> get(Mono<UUID> userId) {
     return repository.findById(userId)
+        .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found")))
         .map(mapper::toUserCreateResponse);
   }
 
